@@ -12,12 +12,10 @@ var mongoose   = require('mongoose');
 var router      = express.Router(); 
 var Product     = require('./server/models/product');
 
-var dbName = 'onlineshopdb';
-
-var mongodbConnectionString = 'mongodb://localhost:27017/' + dbName;
+var mongodbConnectionString = 'mongodb://localhost:27017/onlineshopdb';
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + dbName;
+  mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + 'nodejs';
 }
 
 // configure app to use bodyParser()
@@ -28,7 +26,7 @@ app.use(bodyParser.json());
 var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 3000
 var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-//mongoose.connect(mongodbConnectionString);
+mongoose.connect(mongodbConnectionString);
 
 // ROUTES FOR OUR API
 // =============================================================================
