@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Implementation of a shopping site with ng2",
   "scripts": {
-    "start": "tsc -w",
+    "start": "node server.js",
+    "complile": "tsc -w",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
