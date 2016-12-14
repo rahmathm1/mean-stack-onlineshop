@@ -17,7 +17,8 @@ var Product     = require('./server/models/product');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;        // set our port
+var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 3000
+var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 mongoose.connect('mongodb://localhost:27017/onlineshopdb');
 
@@ -41,5 +42,6 @@ app.use('/api/products', ProductsRouter);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+app.listen(serverPort, serverIpAddress, function () {
+  console.log( "Listening on " + serverPort + ", port " + serverIpAddress )
+});
