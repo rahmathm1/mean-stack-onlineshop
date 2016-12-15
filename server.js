@@ -40,11 +40,14 @@ router.use(function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next(); // make sure we go to the next routes and don't stop here
 });
+router.get('/', function (req, res) {
+  res.send('hello')
+})
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/', router);
-app.use('/api/products', ProductsRouter);
+//app.use('/api/products', ProductsRouter);
 
 // START THE SERVER
 // =============================================================================
