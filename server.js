@@ -51,6 +51,4 @@ app.use('/', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(serverPort, serverIpAddress, function () {
-  console.log( "Listening on " + serverPort + ", port " + serverIpAddress )
-});
+app.listen(serverPort);
