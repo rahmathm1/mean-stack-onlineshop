@@ -10,12 +10,14 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
 var router      = express.Router(); 
-//var Product     = require('./server/models/product');
+var Product     = require('./server/models/product');
 
-var mongodbConnectionString = 'mongodb://localhost:27017/onlineshopdb';
+var dbName = 'onlineshopdb';
+
+var mongodbConnectionString = 'mongodb://localhost:27017/' + dbName;
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + 'nodejs';
+  mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + dbName;
 }
 
 // configure app to use bodyParser()
@@ -23,8 +25,8 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 3000
+var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 //mongoose.connect(mongodbConnectionString);
 
@@ -34,16 +36,15 @@ var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-    console.log('a');
+    console.log('a')
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next(); // make sure we go to the next routes and don't stop here
 });
-router.get('/', function (req, res) {
-  res.send('hello');
-})
-
+router.get('/', function(req, res){
+    res.send('success');
+});
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/', router);
@@ -51,4 +52,6 @@ app.use('/', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(serverPort);
+app.listen(serverPort, serverIpAddress, function () {
+  console.log( "Listening on " + serverPort + ", port " + serverIpAddress )
+});
