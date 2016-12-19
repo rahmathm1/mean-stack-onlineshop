@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 3000
 var serverIpAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-mongoose.connect(mongodbConnectionString);
+//mongoose.connect(mongodbConnectionString);
 
 // ROUTES FOR OUR API
 // =============================================================================
