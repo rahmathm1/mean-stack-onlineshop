@@ -34,7 +34,7 @@ mongoose.connect(mongodbConnectionString);
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-    console.log('a')
+    console.log('a');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
