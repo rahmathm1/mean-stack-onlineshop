@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
 var router      = express.Router(); 
-var Product     = require('./server/models/product');
+//var Product     = require('./server/models/product');
 
 var mongodbConnectionString = 'mongodb://localhost:27017/onlineshopdb';
 
